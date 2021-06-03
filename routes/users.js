@@ -23,6 +23,7 @@ router.get('/:id', async (req, res) => {
 
 // ! /api/users/
 router.post('/', async (req, res) => {
+  console.log('Entró!!');
   const schema = joi.object({
     user: joi.string().alphanum().min(4).max(20).required(),
     email: joi.string().email().required(),
@@ -32,6 +33,7 @@ router.post('/', async (req, res) => {
   if(!result.error) {
     let user = req.body;
     user = await dataUser.addUser(user);
+    console.log('HOLA!!');
     res.json(user);
   } else {
     res.status(400).send(result.error.details[0].message);
